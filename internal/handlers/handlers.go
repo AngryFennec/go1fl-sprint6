@@ -11,7 +11,7 @@ import (
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "../index.html")
+	http.ServeFile(w, r, "index.html")
 }
 
 func UploadHandler(w http.ResponseWriter, r *http.Request) {
@@ -45,7 +45,6 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fileName := time.Now().UTC().Format("20251212_121212") + ".txt"
-	log.Println(fileName)
 
 	err = os.WriteFile(fileName, []byte(result), 0644)
 	if err != nil {
@@ -53,7 +52,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
 
 	_, err = w.Write([]byte(result))
