@@ -44,7 +44,8 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fileName := time.Now().UTC().Format("99999999_9999999") + ".txt"
+	fileName := time.Now().UTC().Format("20251212_121212") + ".txt"
+	log.Println(fileName)
 
 	err = os.WriteFile(fileName, []byte(result), 0644)
 	if err != nil {
